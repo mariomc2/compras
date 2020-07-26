@@ -1,24 +1,91 @@
-# README
+# Compras
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+	rails new compras
 
-Things you may want to cover:
+## Bootstrap
 
-* Ruby version
+Set up Bootstrap with WebPacker
 
-* System dependencies
+    yarn add bootstrap jquery popper.js
 
-* Configuration
+Add the following to config/webpack/environment.js
 
-* Database creation
+```
+const webpack = require('webpack')
 
-* Database initialization
+environment.plugins.prepend(
+  'Provide',
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    jquery: 'jquery',
+    Popper: ['popper.js', 'default']
+  })
+)
+```
 
-* How to run the test suite
+Create a folder to hold stylesheets, and create one **scss**
 
-* Services (job queues, cache servers, search engines, etc.)
+    $ mkdir app/javascript/stylesheets/
+    $ touch app/javascript/stylesheets/application.scss
 
-* Deployment instructions
+Add the following to: app/javascript/stylesheets/application.scss
 
-* ...
+    @import "~bootstrap/scss/bootstrap";
+
+Add the following to app/javascript/packs/applications.js
+
+    import 'bootstrap'
+    import '../stylesheets/application'
+
+---
+## simple_form
+
+Add it to the gemfile:
+
+    gem 'simple_form'
+
+Run the generator with Bootstrap:
+
+    rails generate simple_form:install --bootstrap
+
+---
+## Github
+
+Create project on Github and add remote
+
+    git remote add origin git@github.com:mariomc2/compras.git
+
+Commit code
+
+    git add .
+    git commit -m "Initial commit"
+
+Push to Github
+
+    git push -u origin master
+
+---
+## Create Product:
+
+    rails generate scaffold Product title:string description:text image_url:string price:decimal
+
+---
+## Create Store Catalog:
+
+    rails generate controller Store index
+
+---
+## Create Cart
+
+	rails generate scaffold Cart
+
+---
+## Create Order
+
+	rails generate scaffold Order name:string address:text email:string pay_type:integer
+
+---
+## Create Line Item
+
+	rails generate scaffold LineItem product:references cart:belongs_to order:belongs_to quantity:integer

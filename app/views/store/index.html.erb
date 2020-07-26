@@ -1,0 +1,21 @@
+<% if notice %>
+  <aside id="notice"><%= notice %></aside>
+<% end %>
+
+<h1>Catalog</h1>
+
+<table class="table table-striped">
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td class="image">
+          <%= image_tag(product.image_url, height: '100', class: 'list_image') %>
+        </td>
+        <td><%= product.title %></td>
+        <td><%= product.description %></td>
+        <td><%= number_to_currency(product.price) %></td>
+        <td><%= button_to('Add to Cart',line_items_path(product_id: product), remote: true, class: "btn btn-primary") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
