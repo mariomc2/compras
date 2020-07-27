@@ -18,4 +18,5 @@ P.times do |p|
 		image_url: Faker::LoremPixel.image(size: "300x200", is_gray: false, category: 'food', number: p+1 ),
 		price: 10.0 + Random.rand(100)
 	)
+	puts "Producr #{p}: #{product[p].title} created!"
 end

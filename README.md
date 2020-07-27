@@ -24,6 +24,11 @@ environment.plugins.prepend(
 )
 ```
 
+---
+## Font Awesome
+
+    yarn add @fortawesome/fontawesome-free
+
 Create a folder to hold stylesheets, and create one **scss**
 
     $ mkdir app/javascript/stylesheets/
@@ -32,6 +37,7 @@ Create a folder to hold stylesheets, and create one **scss**
 Add the following to: app/javascript/stylesheets/application.scss
 
     @import "~bootstrap/scss/bootstrap";
+    @import '@fortawesome/fontawesome-free';
 
 Add the following to app/javascript/packs/applications.js
 

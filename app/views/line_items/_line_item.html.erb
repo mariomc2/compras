@@ -1,9 +1,13 @@
 <% if line_item == @current_item %>
-  <tr class="line-item-highlight">
+  	<tr class="line-item-highlight">
 <% else %>
-  <tr>
+  	<tr>
 <% end %>
-  <td class="quantity"><%= line_item.quantity %></td>
-  <td><%= line_item.product.title %></td>
-  <td class="price"><%= number_to_currency(line_item.total_price) %></td>
+	<td>
+		<%= simple_form_for(line_item, remote: true, authenticity_token: true) do |f| %>
+			<%= f.input :quantity, label: false , input_html: {min: 1, onchange: "quantityChange(this)"} %>
+		<% end %>
+	</td>
+  	<td><%= line_item.product.title %></td>
+  	<td class="price"><%= number_to_currency(line_item.total_price) %></td>
 </tr>

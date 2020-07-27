@@ -1,29 +1,30 @@
-<article>
-  <% if notice %>
-    <aside id="notice"><%= notice %></aside>
-  <% end %>
-
-  <h2>Your Cart</h2>
-  <table class="table table-striped">
-
-    <%= render(cart.line_items) %>
-    <tfoot>
-      <tr>
-        <th colspan="2">Total:</th>
-        <td class="price"><%= number_to_currency(cart.total_price) %></td>
-      </tr>
-    </tfoot>
-  </table>
-
-  <div class="actions">
-  <%= button_to('Empty cart', cart,
-                method: :delete,
-                data: { confirm: 'Are you sure?' },
-                class: "btn btn-danger") %>
-
-
-  <%= button_to('Checkout', new_order_path,
-                method: :get,
-                class: "btn btn-success")%>
+<div class="card border-primary mb-3" >
+  <div class="card-header bg-primary border-primary text-white ">
+    <i class="fas fa-shopping-cart fa-3x mx-2" style="float:left;"></i>
   </div>
-</article>
+  <div class="card-body text-primary", style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+    <table class="table table-striped">
+
+      <%= render(cart.line_items) %>
+      <tfoot>
+        <tr>
+          <th colspan="2">Total:</th>
+          <td class="price"><%= number_to_currency(cart.total_price) %></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <div class="card-footer bg-transparent border-primary", style="padding-bottom: 0;">
+    <div class="actions">
+    <%= button_to('Empty cart', cart,
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' },
+                  class: "btn btn-danger") %>
+
+
+    <%#= button_to('Checkout', new_order_path,
+                  method: :get,
+                  class: "btn btn-success")%>
+    </div>
+  </div>
+</div>

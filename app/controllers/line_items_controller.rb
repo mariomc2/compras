@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
   include CurrentCart
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create, :update]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
   # GET /line_items
@@ -46,10 +46,12 @@ class LineItemsController < ApplicationController
   def update
     respond_to do |format|
       if @line_item.update(line_item_params)
-        format.html { redirect_to @line_item, notice: 'Line item was successfully updated.' }
+        format.html { redirect_to store_index_url}
+        format.js {@current_item = @line_item}
         format.json { render :show, status: :ok, location: @line_item }
       else
         format.html { render :edit }
+        format.js
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
